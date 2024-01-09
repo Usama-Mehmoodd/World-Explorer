@@ -1,0 +1,31 @@
+body {
+  font-family: "Poppins", sans-serif;
+  /* background-color: #f8f8f8; */
+}
+.topBtn{
+  position: "fixed";
+  top: "90%";
+  left: "90%";
+  border: "none";
+  outline: "none";
+  padding: "5px 15px";
+  background-color: "silver";
+  border-radius: "5px";
+  cursor: "pointer";
+
+  /* // opacity:'0';
+    // display:'none'; */
+  transition: "all 0.4s linear";
+}
+
+.readBtn {
+  position: "fixed";
+  top: "90%";
+  left: "50%";
+  border: "none";
+  outline: "none";
+  padding: "5px 15px";
+  background-color: "silver";
+  border-radius: "5px";
+  cursor: "pointer";
+}
