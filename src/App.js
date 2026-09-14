@@ -161,10 +161,10 @@ export default function App() {
       let state = [...tempData];
       let arr = state.slice(0, data.length);
       arr.sort(function (a, b) {
-        if (a.name.common < b.name.common) {
+        if (a.names.common < b.names.common) {
           return -1;
         }
-        if (a.name.common > b.name.common) {
+        if (a.names.common > b.names.common) {
           return 1;
         }
         return 0;
@@ -178,10 +178,10 @@ export default function App() {
       let state = [...tempData];
       let arr = state.slice(0, data.length);
       arr.sort(function (a, b) {
-        if (a.name.common < b.name.common) {
+        if (a.names.common < b.names.common) {
           return 1;
         }
-        if (a.name.common > b.name.common) {
+        if (a.names.common > b.names.common) {
           return -1;
         }
         return 0;
