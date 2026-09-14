@@ -19,20 +19,37 @@ export default function App() {
     fetchData();
   }, []);
 
-  function fetchData() {
+  async function fetchData() {
     setLoader(true);
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        // let dta = data;
-        let arr = data.slice(0, 10);
-        setData(arr);
-        setTempData(data);
-        setIndex(10);
-        setTimeout(() => {
-          setLoader(false);
-        }, 1000);
-      });
+
+    try {
+      const response = await fetch(
+        "https://api.restcountries.com/countries/v5",
+        {
+          headers: {
+            Authorization: "Bearer rc_live_4fe0f73630494392a93fd4ea1e272590",
+          },
+        },
+      );
+
+      const result = await response.json();
+
+      console.log("result: ", result);
+
+      const countries = result.data.objects;
+
+      let arr = countries.slice(0, 10);
+
+      setData(arr);
+      setTempData(countries);
+      setIndex(10);
+    } catch (error) {
+      console.log("Error fetching countries:", error);
+    } finally {
+      setTimeout(() => {
+        setLoader(false);
+      }, 1000);
+    }
   }
 
   // function handleLoadMore() {
@@ -240,7 +257,7 @@ export default function App() {
               <Card>
                 <Card.Body style={{ minHeight: "380px" }}>
                   <img
-                    src={v?.flags?.png}
+                    src={v?.flag?.url_png}
                     style={{
                       width: "100%",
                       height: "200px",
@@ -258,7 +275,7 @@ export default function App() {
                     <div className="d-flex justify-content-between">
                       <h6>Region : {v?.region}</h6>
 
-                      <h6>Area : {v?.area}</h6>
+                      <h6>Area : {v?.area ? v?.area?.kilometers : "Area Not Found"}</h6>
                     </div>
 
                     <h6>Population : {v?.population}</h6>
